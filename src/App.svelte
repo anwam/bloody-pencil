@@ -13,18 +13,18 @@
 
 <main class="container mx-auto bg-orange-100 p-6 lg:max-w-7xl">
   <h1 class="text-4xl font-extrabold mb-5 text-orange-600">Pokemon Svelte</h1>
-  {#await data}
-    <p>loading</p>
-  {:then value}
-    <div
-      class="max-w-4xl mx-auto grid grid-cols-3 grid-flow-row border-amber-600 bg-sky-50 border-2 rounded-3xl shadow shadow-amber-600 p-4"
+  <div
+    class="max-w-4xl mx-auto grid grid-cols-3 grid-flow-row border-amber-600 bg-sky-50 border-2 rounded-3xl shadow shadow-amber-600 p-4"
+  >
+    <button
+      class="p-2 bg-sky-200 text-sky-800 font-bold text-xl rounded-xl border-2 mb-5 border-sky-600 transition-transform hover:scale-105"
+      on:click={random}
     >
-      <button
-        class="p-2 bg-sky-200 text-sky-800 font-bold text-xl rounded-xl border-2 mb-5 border-sky-600 transition-transform hover:scale-105"
-        on:click={random}
-      >
-        Roll!
-      </button>
+      Roll!
+    </button>
+    {#await data}
+      <p>loading</p>
+    {:then value}
       {#if value.sprites}
         <div
           class="col-span-3 flex justify-evenly bg-sky-50 py-4 rounded-xl mb-4 border border-sky-900 shadow-md shadow-sky-300"
@@ -68,8 +68,8 @@
           {/each}
         </div>
       {/if}
-    </div>
-  {/await}
+    {/await}
+  </div>
 </main>
 
 <style>
