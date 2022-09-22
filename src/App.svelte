@@ -2,11 +2,13 @@
   import Counter from "./lib/Counter.svelte";
   import type { Pokemon } from "./types/pokemon.type";
 
-  const data = fetch("https://pokeapi.co/api/v2/pokemon/pikachu").then(
-    (res) => {
-      return res.json() as Promise<Pokemon>;
-    }
-  );
+  let id = Math.floor(Math.random() * 905);
+  $: data = fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => {
+    return res.json() as Promise<Pokemon>;
+  });
+  function random() {
+    id = Math.floor(Math.random() * 905);
+  }
 </script>
 
 <main class="container mx-auto bg-orange-100 p-6 lg:max-w-7xl">
@@ -17,18 +19,21 @@
     <div
       class="max-w-4xl mx-auto grid grid-cols-3 grid-flow-row border-amber-600 bg-sky-50 border-2 rounded-3xl shadow shadow-amber-600 p-4"
     >
+      <button
+        class="p-2 bg-sky-200 text-sky-800 font-bold text-xl rounded-xl border-2 mb-5 border-sky-600 transition-transform hover:scale-105"
+        on:click={random}
+      >
+        Roll!
+      </button>
       {#if value.sprites}
         <div
           class="col-span-3 flex justify-evenly bg-sky-50 py-4 rounded-xl mb-4 border border-sky-900 shadow-md shadow-sky-300"
         >
-          {#each Object.keys(value.sprites.versions["generation-ii"]) as imgUrl}
-            <img
-              class="object-contain"
-              src={value.sprites.versions["generation-ii"][imgUrl]
-                .front_default}
-              alt={value.sprites.other["official-artwork"].front_default}
-            />
-          {/each}
+          <img
+            class="object-contain"
+            src={value.sprites.other["official-artwork"].front_default}
+            alt={value.name}
+          />
         </div>
       {/if}
       {#if value.abilities}
