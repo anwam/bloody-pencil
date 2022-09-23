@@ -1,9 +1,13 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@popperjs/core': ^2.11.6
   '@sveltejs/vite-plugin-svelte': ^1.0.2
   '@tsconfig/svelte': ^3.0.0
   autoprefixer: ^10.4.12
+  classnames: ^2.3.2
+  flowbite: ^1.5.3
+  flowbite-svelte: ^0.26.30
   postcss: ^8.4.16
   svelte: ^3.49.0
   svelte-check: ^2.8.1
@@ -14,9 +18,13 @@ specifiers:
   vite: ^3.1.0
 
 devDependencies:
+  '@popperjs/core': 2.11.6
   '@sveltejs/vite-plugin-svelte': 1.0.8_svelte@3.50.1+vite@3.1.3
   '@tsconfig/svelte': 3.0.0
   autoprefixer: 10.4.12_postcss@8.4.16
+  classnames: 2.3.2
+  flowbite: 1.5.3
+  flowbite-svelte: 0.26.30
   postcss: 8.4.16
   svelte: 3.50.1
   svelte-check: 2.9.0_ip6t7gbsntalqsv24txi5sqe6u
@@ -83,6 +91,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: true
 
   /@rollup/pluginutils/4.2.1:
@@ -246,6 +258,10 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: true
 
   /color-name/1.1.4:
@@ -567,6 +583,22 @@ packages:
       to-regex-range: 5.0.1
     dev: true
 
+  /flowbite-svelte/0.26.30:
+    resolution: {integrity: sha512-iWi1R0I+w4Xacswn+nh9RLeSHknxn0Xavq6kHcpbVqICUEoKsI8+pkBL7TtGh2d0e3LA/PEFsPmyf8ZZ+o4CUA==}
+    engines: {node: '>=16.0.0', npm: '>=7.0.0'}
+    dependencies:
+      '@popperjs/core': 2.11.6
+      classnames: 2.3.2
+      flowbite: 1.5.3
+    dev: true
+
+  /flowbite/1.5.3:
+    resolution: {integrity: sha512-e2OHfndxTHtGMqcPqvqwg3gGLg57hmIDVgE/BazMDccgirQ0JEtirKnbZZ4WSOIEhNDgO9pJZuyC8rRlcMm6pQ==}
+    dependencies:
+      '@popperjs/core': 2.11.6
+      mini-svg-data-uri: 1.4.4
+    dev: true
+
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
@@ -711,6 +743,11 @@ packages:
   /min-indent/1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
+    dev: true
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: true
 
   /minimatch/3.1.2:

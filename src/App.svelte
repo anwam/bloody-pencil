@@ -1,14 +1,23 @@
 <script lang="ts">
-  import Counter from "./lib/Counter.svelte";
+  import { onMount } from "svelte";
+  import { fade, fly } from "svelte/transition";
+  import { pokemonStore, loadingStore } from "./store";
   import type { Pokemon } from "./types/pokemon.type";
+  import Artwork from "./lib/Artwork.svelte";
+  import Ability from "./lib/Ability.svelte";
+  import Moves from "./lib/Moves.svelte";
+  import Detail from "./lib/Detail.svelte";
 
-  let id = Math.floor(Math.random() * 905);
-  $: data = fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => {
-    return res.json() as Promise<Pokemon>;
-  });
-  function random() {
-    id = Math.floor(Math.random() * 905);
+  async function loadData(): Promise<void> {
+    const id = Math.floor(Math.random() * 905);
+    loadingStore.update((isLoading) => true);
+    const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const pokemon = (await data.json()) as Pokemon;
+    pokemonStore.set(pokemon);
+    loadingStore.update((isLoading) => false);
   }
+
+  onMount(() => loadData());
 </script>
 
 <main class="container mx-auto bg-orange-100 p-6 lg:max-w-7xl">
@@ -18,33 +27,15 @@
   >
     <button
       class="p-2 bg-sky-200 text-sky-800 font-bold text-xl rounded-xl border-2 mb-5 border-sky-600 transition-transform hover:scale-105"
-      on:click={random}
+      on:click={loadData}
     >
       Roll!
     </button>
-    {#await data}
-      <p>loading</p>
-    {:then value}
-      {#if value.sprites}
-        <div
-          class="col-span-3 flex justify-evenly bg-sky-50 py-4 rounded-xl mb-4 border border-sky-900 shadow-md shadow-sky-300"
-        >
-          <img
-            class="object-contain"
-            src={value.sprites.other["official-artwork"].front_default}
-            alt={value.name}
-          />
-        </div>
-      {/if}
-      {#if value.abilities}
-        <p class="col-span-1">Ability</p>
-        <div class="col-span-2 capitalize">
-          {#each value.abilities as ability (ability.slot)}
-            <p>{ability.ability.name.replace("-", " ")}</p>
-          {/each}
-        </div>
-      {/if}
-      {#if value.forms}
+    <Artwork />
+    <Ability />
+    <Detail />
+    <Moves />
+    <!--   {#if value.forms}
         <p class="col-span-1">Forms</p>
         <div class="col-span-2">
           {#each value.forms as form, i (i)}
@@ -57,18 +48,7 @@
         </div>
       {/if}
       {#if value.moves}
-        <p class="col-span-1">Moves</p>
-        <div class="col-span-2 grid grid-cols-2 grid-flow-row">
-          {#each value.moves as move (move.move.name)}
-            <p class="text-sky-700 underline font-bold capitalize">
-              <a href={move.move.url}>
-                {move.move.name.replace("-", " ")}
-              </a>
-            </p>
-          {/each}
-        </div>
-      {/if}
-    {/await}
+      {/if}-->
   </div>
 </main>
 

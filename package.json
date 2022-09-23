@@ -10,9 +10,13 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
+    "@popperjs/core": "^2.11.6",
     "@sveltejs/vite-plugin-svelte": "^1.0.2",
     "@tsconfig/svelte": "^3.0.0",
     "autoprefixer": "^10.4.12",
+    "classnames": "^2.3.2",
+    "flowbite": "^1.5.3",
+    "flowbite-svelte": "^0.26.30",
     "postcss": "^8.4.16",
     "svelte": "^3.49.0",
     "svelte-check": "^2.8.1",
