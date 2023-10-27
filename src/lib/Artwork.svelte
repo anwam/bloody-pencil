@@ -20,7 +20,7 @@
 
 <style>
   .artwork-card {
-    @apply col-span-3 flex flex-col justify-center items-center bg-sky-50 py-4 rounded-xl mb-4 border border-sky-900 shadow-md shadow-sky-300;
+    @apply col-span-3 flex flex-col justify-center items-center bg-orange-50 py-4 rounded-xl mb-4 border border-orange-600 shadow shadow-orange-600;
     min-height: 509px;
   }
 </style>

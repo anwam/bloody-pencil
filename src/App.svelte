@@ -20,13 +20,13 @@
   onMount(() => loadData());
 </script>
 
-<main class="container mx-auto bg-orange-100 p-6 lg:max-w-7xl">
+<main
+  class="container mx-auto bg-orange-100 shadow-lg rounded-3xl shadow-orange-600 p-8 m-8 lg:max-w-5xl"
+>
   <h1 class="text-4xl font-extrabold mb-5 text-orange-600">Pokemon Svelte</h1>
-  <div
-    class="max-w-4xl mx-auto grid grid-cols-3 grid-flow-row border-amber-600 bg-sky-50 border-2 rounded-3xl shadow shadow-amber-600 p-4"
-  >
+  <div class="grid grid-cols-3 grid-flow-row gap-8 rounded-xl">
     <button
-      class="p-2 bg-sky-200 text-sky-800 font-bold text-xl rounded-xl border-2 mb-5 border-sky-600 transition-transform hover:scale-105"
+      class="p-2 bg-orange-300 text-orange-900 font-bold text-xl rounded-lg border border-orange-600 shadow shadow-orange-600 transition-transform hover:scale-105"
       on:click={loadData}
     >
       Roll!
