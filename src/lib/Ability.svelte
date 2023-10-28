@@ -1,7 +1,8 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import { Skeleton, TextPlaceholder } from "flowbite-svelte";
-  import { pokemonStore, loadingStore } from "../store";
+  import { pokemonStore } from "../store";
+  import loadingStore from "../stores/loading.store";
   const bgColors = [
     "bg-red-300",
     "bg-orange-300",
@@ -33,7 +34,7 @@
 >
   <p class="text-xl font-bold">Ability</p>
   <div class="space-x-2">
-    {#if $loadingStore === false}
+    {#if $loadingStore === "idle"}
       {#if $pokemonStore?.abilities?.length}
         {#each $pokemonStore?.abilities as ability (ability.slot)}
           <span
@@ -43,12 +44,14 @@
           </span>
         {/each}
       {/if}
-    {:else}
+    {:else if $loadingStore === "loading"}
       <div class="flex items-center animate-pulse space-x-2 w-full px-2 py-1">
         <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32" />
         <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-12" />
         <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-14" />
       </div>
+    {:else}
+      <p>failed to fetched</p>
     {/if}
   </div>
 </div>

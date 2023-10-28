@@ -1,20 +1,25 @@
 <script lang="ts">
   import { ImagePlaceholder, Skeleton } from "flowbite-svelte";
-  import { pokemonStore, loadingStore } from "../store";
+  import { pokemonStore } from "../store";
+  import loadingStore from "../stores/loading.store";
 </script>
 
 <div class="artwork-card">
-  {#if $loadingStore === false}
+  {#if $loadingStore === "idle"}
     <img
       class="object-contain"
       src={$pokemonStore?.sprites?.other["official-artwork"]?.front_default}
       alt={$pokemonStore?.name}
+      loading="lazy"
     />
     <p class="capitalize">
       {$pokemonStore?.name?.replace("-", " ")}
     </p>
-  {:else}
+  {:else if $loadingStore === "loading"}
     <ImagePlaceholder />
+  {:else}
+    <!-- error -->
+    <p>failed to fetch</p>
   {/if}
 </div>
 

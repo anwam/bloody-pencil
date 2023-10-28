@@ -1,20 +1,21 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
-  import { pokemonStore, loadingStore } from "./store";
+  import { pokemonStore } from "./store";
   import type { Pokemon } from "./types/pokemon.type";
   import Artwork from "./lib/Artwork.svelte";
   import Ability from "./lib/Ability.svelte";
   import Moves from "./lib/Moves.svelte";
   import Detail from "./lib/Detail.svelte";
+  import { setLoading } from "./stores/loading.store";
 
   async function loadData(): Promise<void> {
     const id = Math.floor(Math.random() * 905);
-    loadingStore.update((isLoading) => true);
+    setLoading("loading");
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const pokemon = (await data.json()) as Pokemon;
     pokemonStore.set(pokemon);
-    loadingStore.update((isLoading) => false);
+    setLoading("idle");
   }
 
   onMount(() => loadData());
@@ -26,7 +27,7 @@
   <h1 class="text-4xl font-extrabold mb-5 text-orange-600">Pokemon Svelte</h1>
   <div class="grid grid-cols-3 grid-flow-row gap-8 rounded-xl">
     <button
-      class="p-2 bg-orange-300 text-orange-900 font-bold text-xl rounded-lg border border-orange-600 shadow shadow-orange-600 transition-transform hover:scale-105"
+      class="p-2 bg-sky-100 text-sky-900 font-bold text-xl rounded-lg border border-sky-600 shadow shadow-sky-600 transition-transform hover:scale-105"
       on:click={loadData}
     >
       Roll!
